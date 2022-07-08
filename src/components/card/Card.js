@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./card.css";
+import { UserContext } from "../../App";
 function Card() {
-  const [count, setCount] = useState(0);
-  const [fries, setFries] = useState(0);
-  const [coke, setCoke] = useState(0);
+  const { hamburger, fries, coke, setHamburger, setFries, setCoke } = useContext(UserContext);
   return (
     <>
       <div className="container">
         <div className="row">
           <div className="col-sm">
-            <div class="card">
+            <div className="card">
               <img
                 className="card-img-top"
                 src="https://media.istockphoto.com/photos/hamburger-with-cheese-and-french-fries-picture-id1188412964?k=20&m=1188412964&s=612x612&w=0&h=Ow-uMeygg90_1sxoCz-vh60SQDssmjP06uGXcZ2MzPY="
@@ -19,12 +18,14 @@ function Card() {
               <div className="card-body">
                 <p>Hamburger</p>
                 <p>Price: 200</p>
-                <p>Total:{count}</p>
-                <p>Cost(INR):{count * 200} </p>
-                <button onClick={() => setCount(count + 1)} className="btn1">
+                <p>Total:{hamburger}</p>
+                <p>Cost(INR):{hamburger * 200} </p>
+                <button onClick={() => setHamburger(hamburger + 1)} className="btn1">
                   +
                 </button>
-                <button onClick={() => setCount(count - 1)} className="btn2">
+                <button onClick={() => {
+                  if (hamburger) setHamburger(hamburger - 1);
+                }} className="btn2">
                   -
                 </button>
               </div>
@@ -32,13 +33,13 @@ function Card() {
           </div>
           <div className="col-sm">
             {" "}
-            <div class="card">
+            <div className="card">
               <img
-                class="card-img-top"
+                className="card-img-top"
                 src="https://static.toiimg.com/thumb/54659021.cms?imgsize=275086&width=800&height=540"
                 alt="Card image cap"
               />
-              <div class="card-body">
+              <div className="card-body">
                 <p>Fries</p>
                 <p>Price: 100</p>
                 <p>Total:{fries}</p>
@@ -46,7 +47,10 @@ function Card() {
                 <button onClick={() => setFries(fries + 1)} className="btn1">
                   +
                 </button>
-                <button onClick={() => setFries(fries - 1)} className="btn2">
+                <button onClick={() => {
+                  if (fries) setFries(fries - 1);
+                }
+                } className="btn2">
                   -
                 </button>
               </div>
@@ -54,14 +58,14 @@ function Card() {
           </div>
           <div className="col-sm">
             {" "}
-            <div class="card">
+            <div className="card">
               <img
-                class="card-img-top"
+                className="card-img-top"
                 src="https://www.eatthis.com/wp-content/uploads/sites/4/media/images/ext/108098914/coca-cola-soda-ice.jpg?quality=82&strip=1"
                 alt="Card image cap"
                 height="280px"
               />
-              <div class="card-body">
+              <div className="card-body">
                 <p>Cock</p>
                 <p>Price: 50</p>
                 <p>Total:{coke}</p>
@@ -69,7 +73,9 @@ function Card() {
                 <button onClick={() => setCoke(coke + 1)} className="btn1">
                   +
                 </button>
-                <button onClick={() => setCoke(coke - 1)} className="btn2">
+                <button onClick={() => {
+                  if (coke) setCoke(coke - 1)
+                }} className="btn2">
                   -
                 </button>
               </div>

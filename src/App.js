@@ -7,21 +7,27 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
-  useRouteMatch,
-  useParams,
 } from "react-router-dom";
+import React, { useState } from "react";
+
+export const UserContext = React.createContext();
+
 function App() {
+  const [hamburger, setHamburger] = useState(0);
+  const [fries, setFries] = useState(0);
+  const [coke, setCoke] = useState(0);
   return (
     <div className="App">
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/card" element={<Card />} />
-          <Route path="/thanku" element={<Modal />} />
-        </Routes>
-      </Router>
+      <UserContext.Provider value={{ hamburger, fries, coke, setHamburger, setFries, setCoke }}>
+        <Router>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/card" element={<Card />} />
+            <Route path="/checkout" element={<Modal />} />
+          </Routes>
+        </Router>
+      </UserContext.Provider>
     </div>
   );
 }
